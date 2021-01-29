@@ -30,6 +30,8 @@ const Modal = {
 }
 
 const Transaction = {
+	all: transactions,
+
 	incomes() {
 		let income = 0
 
@@ -56,12 +58,15 @@ const Transaction = {
 		return Transaction.expenses() + Transaction.incomes()
 	},
 
-	add() {
-		// Adicionar transação
+	add(transaction) {
+		Transaction.all.push(transaction)
 	},
 
-	remove() {
+	remove(index) {
+		Transaction.all.splice(index, 1)
 		// Remover transação
+
+		App.reload()
 	}
 }
 
@@ -96,6 +101,10 @@ const DOM = {
 		document.querySelector('.income p').innerHTML = Utils.formateCurrency(Transaction.incomes())
 		document.querySelector('.expense p').innerHTML = Utils.formateCurrency(Transaction.expenses())
 		document.querySelector('.total p').innerHTML = Utils.formateCurrency(Transaction.total())
+	},
+
+	clearTransactions() {
+		document.querySelector('#data-table tbody').innerHTML = ''
 	}
 }
 
@@ -116,6 +125,16 @@ const Utils = {
 	}
 }
 
-DOM.updateBalance()
+const App = {
+	init() {
+		DOM.updateBalance()
 
-transactions.forEach(transaction => DOM.addTransaction(transaction))
+		transactions.forEach(transaction => DOM.addTransaction(transaction))
+	},
+	reload() {
+		DOM.clearTransactions()
+		App.init()
+	},
+}
+
+App.init()
