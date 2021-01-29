@@ -31,15 +31,29 @@ const Modal = {
 
 const Transaction = {
 	incomes() {
-		// Somar as Entradas
+		let income = 0
+
+		transactions.forEach(transaction => {
+			if(transaction.amount > 0) {
+				income += transaction.amount
+			}
+		})
+		return income
 	},
 
 	expenses() {
-		// Somar as Saídas
+		let expense = 0
+
+		transactions.forEach(transaction => {
+			if(transaction.amount < 0) {
+				expense += transaction.amount
+			}
+		})
+		return expense
 	},
 
 	total() {
-		// Calcular as Entradas - as Saídas
+		return Transaction.expenses() + Transaction.incomes()
 	},
 
 	add() {
@@ -79,9 +93,9 @@ const DOM = {
 	},
 
 	updateBalance() {
-		const income = document.querySelector('.income p')
-		const expense = document.querySelector('.expense p')
-		const total = document.querySelector('.total p')
+		document.querySelector('.income p').innerHTML = Utils.formateCurrency(Transaction.incomes())
+		document.querySelector('.expense p').innerHTML = Utils.formateCurrency(Transaction.expenses())
+		document.querySelector('.total p').innerHTML = Utils.formateCurrency(Transaction.total())
 	}
 }
 
@@ -101,5 +115,7 @@ const Utils = {
 		return signal + value
 	}
 }
+
+DOM.updateBalance()
 
 transactions.forEach(transaction => DOM.addTransaction(transaction))
