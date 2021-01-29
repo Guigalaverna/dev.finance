@@ -1,10 +1,15 @@
 /* Global */
 
 :root {
-  --primary-color: #2D4A22;
+  --primary-color: #2d4a22;
+  --secondary-color: #363f5f;
   --light-green: #4daa4d;
-  --dark-green: #4daa4d;
-  --secondary-color: #363F5F;
+  --dark-green: #468c46;
+  --light-red: #e92929;
+
+  --text-color: #969cb3;
+
+  --input-background: #ededed;
 }
 
 * {
@@ -14,12 +19,12 @@
 }
 
 html {
-  font-size: 93.75%
+  font-size: 93.75%;
 }
 
 body {
-  background-color: #F0F2F5;
-  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+  font-family: "Poppins", sans-serif;
 }
 
 .sr-only {
@@ -55,12 +60,50 @@ a {
 }
 
 a:hover {
-  color: var(--dark-green)
+  color: var(--dark-green);
+}
+
+button {
+  width: 100%;
+  height: 50px;
+
+  border: none;
+  background-color: var(--light-green);
+  color: white;
+
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+  outline: none;
+
+  transition: ease-in 0.25s;
+}
+
+button:hover {
+  background-color: var(--dark-green);
 }
 
 .button.new {
   display: inline-block;
   margin-bottom: 1.8rem;
+}
+
+.button.cancel {
+  color: var(--light-red);
+  border: 2px solid var(--light-red);
+
+  height: 50px;
+  text-align: center;
+
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.cancel:hover {
+  background-color: var(--light-red);
+  color: white;
 }
 
 /* Header */
@@ -72,7 +115,7 @@ header {
 }
 
 h1 {
-  color: #FFF;
+  color: white;
   font-weight: 100;
 }
 
@@ -91,7 +134,7 @@ h1 {
 .card {
   background-color: white;
   padding: 1.5rem 2rem;
-  
+
   border-radius: 0.25rem;
   margin-bottom: 2rem;
 }
@@ -118,24 +161,28 @@ h1 {
 
 /* Table */
 
-#data-table {
+#transaction {
   display: block;
   width: 100%;
-  border-spacing: 0 0.5rem;
-
   overflow-x: auto;
 }
 
+#data-table {
+  width: 100%;
+  border-spacing: 0 0.5rem;
+  color: var(--text-color);
+}
+
 table th {
-  background-color: #ededed;
+  background-color: var(--input-background);
 
   font-weight: normal;
   padding: 1rem 2rem;
-  color: #969cb3;
+  color: var(--text-color);
 }
 
 table td {
-  background-color: #ededed;
+  background-color: var(--input-background);
   padding: 1rem 2rem;
   font-weight: normal;
 }
@@ -147,7 +194,7 @@ table tbody tr td:first-child {
 
 table thead tr th:last-child,
 table tbody tr td:last-child {
-  border-radius:  0 0.25rem 0.25rem 0;
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 table tr {
@@ -163,11 +210,11 @@ tbody td.description {
 }
 
 tbody td.income {
-  color: #12a454;
+  color: var(--light-green);
 }
 
 tbody td.expense {
-  color: #e92929;
+  color: var(--light-red);
 }
 
 /* Footer */
